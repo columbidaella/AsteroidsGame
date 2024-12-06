@@ -30,6 +30,7 @@ public void draw()
   float d = dist(ship.getX(),ship.getY(),rocks.get(i).getX(),rocks.get(i).getY());
   if(d<40){
     rocks.remove(i);
+  i--;
   }
 }
 }
