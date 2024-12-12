@@ -1,6 +1,7 @@
 Spaceship ship = new Spaceship();
 Star[]night = new Star[100];
 ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
+ArrayList <Bullet> pew = new ArrayList <Bullet>();
 public void setup() 
 {
   size(800,800);
@@ -25,13 +26,24 @@ public void draw()
   ship.move();
   ship.show();
   for(int i = 0; i < rocks.size(); i++){
+  }
+   for(int i = 0; i < pew.size(); i++){
+  pew.get(i).move();
+  pew.get(i).show();
+}
+  for(int i = 0; i < rocks.size(); i++){
   rocks.get(i).move();
   rocks.get(i).show();
-  float d = dist(ship.getX(),ship.getY(),rocks.get(i).getX(),rocks.get(i).getY());
-  if(d<40){
+  for(int n = 0; n < pew.size(); n++){
+  float d = dist(pew.get(n).getX(),pew.get(n).getY(),
+  rocks.get(i).getX(),rocks.get(i).getY());
+  if(d<30){
     rocks.remove(i);
-  i--;
+    pew.remove(n);
+    i--;
+    n--;
   }
+}
 }
 }
 public void keyPressed(){
@@ -49,5 +61,8 @@ public void keyPressed(){
   }
   if(key=='s'){
     ship.accelerate(-0.1);
+  }
+  if(key==' '){
+  pew.add(new Bullet(ship));
   }
 }
