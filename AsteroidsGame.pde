@@ -42,6 +42,7 @@ public void draw()
     pew.remove(n);
     i--;
     n--;
+    break;
   }
 }
 }
